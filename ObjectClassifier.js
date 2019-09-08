@@ -10,13 +10,13 @@ let classificationResults;
  *
  * @param url_cloud_api - cloud url of the model's locations.
  * @param repeats - how many repeats of the same label until true?
- * @param label_cutoffs - individual accuracy cutoffs (text lower than image) 
+ * @param page_cutoffs - individual accuracy cutoffs (text lower than image) 
  */
 
 var CONSTANTS = {
     url_cloud_api : 'http://storage.googleapis.com/04e86dd04c0411c711039770034830af/model.json',
     label_repeats : 5,
-    label_cutoffs : {   'Grace_Leslie': 0.80,
+    page_cutoffs : {   'Grace_Leslie': 0.80,
                         'Evan_Ziporyn': 0.95,
                         'Brendan_Landis': 0.95,
                         'Azra_Aksamija': 0.95,
@@ -31,7 +31,38 @@ var CONSTANTS = {
                         'Pawel_Romanczuk': 0.95,
                         'Victor_Gama': 0.95,
                         'Arnold_Dreyblatt': 0.95
-                      }
+
+                                                },
+    cover_cutoffs : {
+                        'no_cover': 0.95,
+                        'covered_cover': 0.95,
+
+                        'bottom_right_1': 0.95, // bottom_right corner pos:1
+                        'bottom_right_2': 0.95, // bottom_right corner pos:2
+
+                        'mid_right_1': 0.95, // mid_right  pos:1
+                        'mid_right_2': 0.95, // mid_right  pos:2
+
+                        'top_right_1': 0.95, // top_right  pos:1
+                        'top_right_2': 0.95, // top_right  pos:2
+
+                        'top_1': 0.95, // top pos:1
+                        'top_2': 0.95, // top pos:2
+
+                        'bottom_1': 0.95, // bottom pos:1
+                        'bottom_2': 0.95, // bottom pos:2 
+
+                        'bottom_left_1': 0.95, // bottom_right corner pos:1
+                        'bottom_left_2': 0.95, // bottom_right corner pos:2
+
+                        'mid_left_1': 0.95, // mid_right  pos:1
+                        'mid_left_2': 0.95, // mid_right  pos:2
+
+                        'top_left_1': 0.95, // top_right  pos:1
+                        'top_left_2': 0.95 // top_right  pos:2
+
+    }
+
 };
 
 /* 
@@ -171,7 +202,7 @@ class LabelObject {
 
 LabelObject.prototype.cutoffUpdater = function(repeats){
 
-    let cutoff_test = this.cutoff(this.confidence, CONSTANTS.label_cutoffs[this.label]);
+    let cutoff_test = this.cutoff(this.confidence, CONSTANTS.page_cutoffs[this.label]);
 
     if(cutoff_test){
 
