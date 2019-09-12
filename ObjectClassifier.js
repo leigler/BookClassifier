@@ -17,7 +17,7 @@ let classificationResults;
 let Site = {};
 
 Site.undefinedCount = 0;
-Site.cameraView = "environment";
+Site.cameraView = "user";
 
 
 let googleStorageProtocol = "https";
