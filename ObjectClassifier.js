@@ -48,15 +48,24 @@ var CONSTANTS = {
  * Handles the VideoStream, fetching of the Model as well as Classification 
  */
 
-const domOutput = ( input ) => {
+const domOutput = ( input, boolean ) => {
     const domResults = document.querySelector("#dom_results");
 
     if(domResults !== undefined){
-        domResults.innerHTML += `
+        if(boolean){
+          domResults.innerHTML = `
+            <li>
+                output: ${input}
+            </li>
+          `;
+        }else{
+          domResults.innerHTML += `
             <li>
                 ${input}
             </li>
-        `;
+          `;
+        }
+        
     }
 }
 
@@ -165,7 +174,7 @@ const ObjectClassifier = ( sketch ) => {
             if(results) {
                 createResultHTML();
                 console.log(classificationResults);
-                domOutput(classificationResults);
+                domOutput(classificationResults, true);
             }
 
 
