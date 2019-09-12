@@ -54,11 +54,17 @@ var CONSTANTS = {
  * Handles the VideoStream, fetching of the Model as well as Classification 
  */
 
-const domOutput = ( input, boolean ) => {
+const domOutput = ( input, boolean, response ) => {
     const domResults = document.querySelector("#dom_results");
-
+    const pageIdentified = document.querySelector("#page_identified");
     if(domResults !== undefined){
-        if(boolean){
+        if(boolean && response){
+          pageIdentified.innerHTML = `
+            <li>
+                output: ${input}
+            </li>
+          `;
+        }else if(boolean){
           domResults.innerHTML = `
             <li>
                 output: ${input}
@@ -180,7 +186,7 @@ const ObjectClassifier = ( sketch ) => {
             if(results) {
                 createResultHTML();
                 console.log(classificationResults);
-                domOutput(classificationResults.label, true);
+                domOutput(classificationResults.label, true, true);
             }else{
               Site.undefinedCount++;
               domOutput("page unidentified, " + Site.undefinedCount, true);

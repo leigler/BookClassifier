@@ -5,16 +5,21 @@
 	left: 20px;
 	color: yellow;
 	font-family: Arial;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #dom_results_wrapper h1{
 	font-weight: normal;
-	font-size: 20px;
+	font-size: 15px;
+	margin: 0;
+	padding: 0;
 }
 
 #dom_results{
 	list-style: none;
+	border-top: solid 1px yellow;
+	margin: 0;
+	padding: 0;
 	padding-left: 0;
 	margin-left: 0;
 }
