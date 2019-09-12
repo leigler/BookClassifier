@@ -149,10 +149,9 @@ const ObjectClassifier = ( sketch ) => {
         console.log("sketch.video", sketch.VIDEO)
         
         let videoObject = { 
-          audio: false, 
           video: { 
             facingMode: { 
-              exact: "environment" 
+              exact: "user" 
             } 
           } 
         };
