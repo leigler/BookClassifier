@@ -17,6 +17,7 @@ let classificationResults;
 let Site = {};
 
 Site.undefinedCount = 0;
+Site.cameraView = "environment";
 
 
 let googleStorageProtocol = "https";
@@ -151,7 +152,7 @@ const ObjectClassifier = ( sketch ) => {
         let videoObject = { 
           video: { 
             facingMode: { 
-              exact: "user" 
+              exact: Site.cameraView 
             } 
           } 
         };
