@@ -11,7 +11,7 @@ body {
 } 
 
 video{
-        transform: scale(1.5,1.5) rotate(90deg);
+        transform: scale(1.5,1.5);
     }
     
 #sketch{
