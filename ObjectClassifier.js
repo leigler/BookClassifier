@@ -47,6 +47,30 @@ var CONSTANTS = {
                       }
 };
 
+/*
+
+  Grace_Leslie p. 186
+  Evan_Ziporyn p. 190
+  Brendan_Landis p 173, 184, 190, 198
+  Azra_Aksamija p. 62, 193, 197
+  Tolini_Finamore p. 50-61, 197
+  Dewa_Alit
+  Maya_Beiser
+  Tal_Danino
+  Lucy_McRae
+  Hyphen_Labs
+  Nadya_Peek
+  Fry_Reas
+  Pawel_Romanczuk
+  Victor_Gama
+  Arnold_Dreyblatt
+
+
+
+
+ */
+
+
 /* 
  * ObjectClassifier
  *
@@ -189,7 +213,8 @@ const ObjectClassifier = ( sketch ) => {
                 domOutput(classificationResults.label, true, true);
             }else{
               Site.undefinedCount++;
-              domOutput("page unidentified, " + Site.undefinedCount, true);
+              console.log(resultJSON)
+              domOutput("page unidentified,<br>label: " + resultJSON.label +", " + resultJSON.confidence + "<br>" + Site.undefinedCount, true);
             }
 
 
