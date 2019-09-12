@@ -13,6 +13,12 @@ let classificationResults;
  * @param label_cutoffs - individual accuracy cutoffs (text lower than image) 
  */
 
+
+let Site = {};
+
+Site.undefinedCount = 0;
+
+
 let googleStorageProtocol = "https";
 if (location.protocol !== "https:") {
   googleStorageProtocol = "http";
@@ -176,7 +182,8 @@ const ObjectClassifier = ( sketch ) => {
                 console.log(classificationResults);
                 domOutput(classificationResults.label, true);
             }else{
-              domOutput("undefined", true);
+              Site.undefinedCount++;
+              domOutput("page unidentified, " + Site.undefinedCount, true);
             }
 
 
