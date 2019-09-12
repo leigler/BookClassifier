@@ -1,0 +1,24 @@
+#dom_results_wrapper{
+	position: fixed;
+	z-index: 1000;
+	top: 20px;
+	left: 20px;
+	color: yellow;
+	font-family: Arial;
+	font-size: 20px;
+}
+
+#dom_results_wrapper h1{
+	font-weight: normal;
+	font-size: 20px;
+}
+
+#dom_results{
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+#dom_results li:before{
+	content: ">";
+}

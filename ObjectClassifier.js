@@ -41,6 +41,45 @@ var CONSTANTS = {
  * Handles the VideoStream, fetching of the Model as well as Classification 
  */
 
+const domOutput = ( input ) => {
+    const domResults = document.querySelector("#dom_results");
+
+    if(domResults !== undefined){
+        domResults.innerHTML += `
+            <li>
+                ${input}
+            </li>
+        `;
+    }
+}
+
+const cameraChecks = () => {
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+    console.log("enumerateDevices() not supported.");
+    return;
+  }
+
+  // List cameras and microphones.
+
+  navigator.mediaDevices.enumerateDevices()
+  .then(function(devices) {
+    devices.forEach(function(device) {
+      
+      let output = device.kind + ": " + device.label + " id = " + device.deviceId;
+
+      console.log(output);
+      domOutput(output)
+
+    });
+  })
+  .catch(function(err) {
+    console.log(err.name + ": " + err.message);
+  });
+
+}
+
+
 const ObjectClassifier = ( sketch ) => {
 
     let classifier;
@@ -53,14 +92,21 @@ const ObjectClassifier = ( sketch ) => {
      * assigns video size
      */
     sketch.preload = () => {
+        console.log("sketch.video", sketch.VIDEO)
         video = sketch.createCapture(sketch.VIDEO);
+        video.elt.setAttribute('playsinline', '');
+
+        console.log(video)
+        cameraChecks()
+
         classifier = ml5.imageClassifier(CONSTANTS.url_cloud_api);
         video.size(window.innerWidth, window.innerHeight);
 
         // Optional : tests if the browser is mobile
         console.log("is the browser mobile : " + isMobile());
+        domOutput("is the browser mobile: " + isMobile());
         if(!isMobile()){
-            alert("This is a Mobile Application, please switch to a Mobile Browser");
+          alert("This is a Mobile Application, please switch to a Mobile Browser");
         }
     };
 
@@ -82,6 +128,7 @@ const ObjectClassifier = ( sketch ) => {
     function gotResult(err, results) {
         if(err){
             console.log(err);
+            domOutput(err);
         }else{
             classifyVideo();    
             CurrObject.updateCurrObject(results[0]);
@@ -93,6 +140,7 @@ const ObjectClassifier = ( sketch ) => {
             if(results) {
                 createResultHTML();
                 console.log(classificationResults);
+                domOutput(classificationResults);
             }
 
 
