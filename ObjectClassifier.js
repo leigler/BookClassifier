@@ -13,10 +13,10 @@ let classificationResults;
  * @param label_cutoffs - individual accuracy cutoffs (text lower than image) 
  */
 
-var googleStorageProtocol = "https";
-
+let googleStorageProtocol = "https";
 if (location.protocol !== "https:") {
-  googleStorageProtocol = "http"
+  googleStorageProtocol = "http";
+  console.log("switched to http");
 }
 
 
@@ -102,7 +102,23 @@ const ObjectClassifier = ( sketch ) => {
      */
     sketch.preload = () => {
         console.log("sketch.video", sketch.VIDEO)
-        video = sketch.createCapture(sketch.VIDEO);
+        
+        let videoObject = { 
+          audio: true, 
+          video: { 
+            facingMode: { 
+              exact: "environment" 
+            } 
+          } 
+        };
+
+        if(!isMobile()){
+          videoObject = sketch.VIDEO;
+        }
+        
+
+
+        video = sketch.createCapture(videoObject);
         video.elt.setAttribute('playsinline', '');
 
         console.log(video)
