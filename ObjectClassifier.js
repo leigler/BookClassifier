@@ -57,24 +57,26 @@ const cameraChecks = () => {
 
   if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
     console.log("enumerateDevices() not supported.");
+    domOutput("enumerateDevices() not supported.")
     return;
   }
 
-  // List cameras and microphones.
-
+  // List cameras and microphones:
   navigator.mediaDevices.enumerateDevices()
   .then(function(devices) {
+    console.log(devices)
     devices.forEach(function(device) {
       
       let output = device.kind + ": " + device.label + " id = " + device.deviceId;
 
       console.log(output);
-      domOutput(output)
+      domOutput(output);
 
     });
   })
   .catch(function(err) {
     console.log(err.name + ": " + err.message);
+    domOutput(err.name + ": " + err.message);
   });
 
 }
