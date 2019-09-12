@@ -112,7 +112,7 @@ const ObjectClassifier = ( sketch ) => {
           } 
         };
 
-        if(!isMobile()){
+        if(!isMobile()){ // fallback to use default when mobile device isn't accessible
           videoObject = sketch.VIDEO;
         }
         
@@ -160,12 +160,12 @@ const ObjectClassifier = ( sketch ) => {
             var results = CurrObject.cutoffUpdater(CONSTANTS.label_repeats);
             if (results) classificationResults = resultJSON;
 
-            domOutput(classificationResults);
 
             // Optional: Dev and Log display
             if(results) {
                 createResultHTML();
                 console.log(classificationResults);
+                domOutput(classificationResults);
             }
 
 
