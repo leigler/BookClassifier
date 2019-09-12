@@ -13,8 +13,15 @@ let classificationResults;
  * @param label_cutoffs - individual accuracy cutoffs (text lower than image) 
  */
 
+var googleStorageProtocol = "https";
+
+if (location.protocol !== "https:") {
+  googleStorageProtocol = "http"
+}
+
+
 var CONSTANTS = {
-    url_cloud_api : 'http://storage.googleapis.com/04e86dd04c0411c711039770034830af/model.json',
+    url_cloud_api : `${googleStorageProtocol}://storage.googleapis.com/04e86dd04c0411c711039770034830af/model.json`,
     label_repeats : 5,
     label_cutoffs : {   'Grace_Leslie': 0.80,
                         'Evan_Ziporyn': 0.95,
