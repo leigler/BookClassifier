@@ -174,7 +174,9 @@ const ObjectClassifier = ( sketch ) => {
             if(results) {
                 createResultHTML();
                 console.log(classificationResults);
-                domOutput(classificationResults, true);
+                domOutput(classificationResults.label, true);
+            }else{
+              domOutput("undefined", true);
             }
 
 
